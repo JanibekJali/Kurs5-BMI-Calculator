@@ -6,18 +6,23 @@ class GenderWidget extends StatelessWidget {
     Key key,
     @required this.icons,
     @required this.text,
+    @required this.onTap,
   }) : super(key: key);
 
   final IconData icons;
   final String text;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FaIcon(
-          icons,
-          size: 75.0,
+        GestureDetector(
+          onTap: onTap,
+          child: FaIcon(
+            icons,
+            size: 75.0,
+          ),
         ),
         Text(
           text,

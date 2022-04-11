@@ -3,33 +3,69 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CircleButton extends StatelessWidget {
   const CircleButton({
-    Key key,
-  }) : super(key: key);
+    this.text,
+    this.numberText,
+    this.remove,
+    this.add,
+    @required this.decrement,
+    @required this.increment,
+  });
+  final String text;
+  final String numberText;
+  final IconData remove;
+  final IconData add;
+  final void Function() decrement;
+  final void Function() increment;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          'Weight',
-          style: TextStyle(fontSize: 25.0),
+          text.toUpperCase(),
+          style: TextStyle(fontSize: 25.0, color: Color(0xff5A5B6B)),
         ),
         Text(
-          '60',
-          style: TextStyle(fontSize: 50.0),
+          numberText,
+          style: TextStyle(
+            fontSize: 50.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
-                height: 50.0,
-                width: 50.0,
+            InkWell(
+              onTap: decrement,
+              child: Container(
                 decoration: BoxDecoration(
-                    color: Color(0xff4C4F5D), shape: BoxShape.circle),
-                child: FaIcon(FontAwesomeIcons.minus)),
-            FaIcon(
-              FontAwesomeIcons.plus,
-              size: 50.0,
+                  color: Color(0xff4C4F5D),
+                  shape: BoxShape.circle,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: FaIcon(
+                    remove,
+                    size: 40,
+                  ),
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: increment,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xff4C4F5D),
+                  shape: BoxShape.circle,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: FaIcon(
+                    add,
+                    size: 40.0,
+                  ),
+                ),
+              ),
             ),
           ],
         )

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomWidget extends StatelessWidget {
   CustomWidget({this.widget, this.color});
@@ -11,13 +10,11 @@ class CustomWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
+        padding: EdgeInsets.only(top: 20.0),
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.all(Radius.circular(15.0)),
         ),
-        // padding: EdgeInsets.symmetric(vertical: 45.0, horizontal: 50.0),
-        height: 200.0,
-        width: 200.0,
         child: widget,
       ),
     );
