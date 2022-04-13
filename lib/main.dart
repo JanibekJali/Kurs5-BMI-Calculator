@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.green,
         appBarTheme: AppBarTheme(backgroundColor: Colors.blue),
       ),
-      home: ResultPage(),
+      home: BmiPage(),
     );
   }
 }

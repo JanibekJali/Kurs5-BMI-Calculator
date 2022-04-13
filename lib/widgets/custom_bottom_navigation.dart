@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomBottomNavgation extends StatelessWidget {
-  const CustomBottomNavgation({
-    this.onTap,
-  });
+  const CustomBottomNavgation({this.onTap, this.text});
   final void Function() onTap;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +14,7 @@ class CustomBottomNavgation extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           child: Text(
-            'Calculate'.toUpperCase(),
+            text,
             style: TextStyle(fontSize: 35.0, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),

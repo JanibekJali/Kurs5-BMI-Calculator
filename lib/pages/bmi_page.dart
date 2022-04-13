@@ -1,31 +1,36 @@
-import 'dart:developer';
-import 'dart:ui';
-
+import 'package:bmi_calculator/brain/bmi_brain.dart';
+import 'package:bmi_calculator/pages/result_page.dart';
 import 'package:bmi_calculator/widgets/height_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../widgets/circle_button.dart';
 import '../widgets/custom_bottom_navigation.dart';
 import '../widgets/custom_widget.dart';
 import '../widgets/gender_widget.dart';
 
-class ResultPage extends StatefulWidget {
-  const ResultPage({Key key}) : super(key: key);
-
-  @override
-  _ResultPageState createState() => _ResultPageState();
+enum Gender {
+  Male,
+  Female,
+  None,
 }
 
-class _ResultPageState extends State<ResultPage> {
-  int _currentValue = 170;
+class BmiPage extends StatefulWidget {
+  const BmiPage({Key key}) : super(key: key);
+
+  @override
+  _BmiPageState createState() => _BmiPageState();
+}
+
+class _BmiPageState extends State<BmiPage> {
+  int _height = 170;
   int _weight = 60;
   int _age = 23;
 
   Color _activeColor = Color.fromARGB(255, 43, 47, 82);
   Color _inactiveColor = Color(0xff111327);
-  bool _maleSelected = false;
-  bool _femaleSelected = false;
+  // bool _maleSelected = false;
+  // bool _femaleSelected = false;
+  Gender _gender = Gender.None;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,7 @@ class _ResultPageState extends State<ResultPage> {
           backgroundColor: Color(0xff111327),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(25.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -46,15 +51,18 @@ class _ResultPageState extends State<ResultPage> {
                     CustomWidget(
                       // icons: FontAwesomeIcons.mars,
                       // text: 'Male',
-                      color: _maleSelected ? _activeColor : _inactiveColor,
+                      color: _gender == Gender.Male
+                          ? _activeColor
+                          : _inactiveColor,
                       widget: GenderWidget(
                         icons: FontAwesomeIcons.mars,
                         text: 'Male',
                         onTap: () {
                           setState(() {
                             // _maleSelected = true;
-                            _maleSelected = !_maleSelected;
-                            _femaleSelected = false;
+                            // _maleSelected = !_maleSelected;
+                            // _femaleSelected = false;
+                            _gender = Gender.Male;
                           });
                         },
                       ),
@@ -63,14 +71,17 @@ class _ResultPageState extends State<ResultPage> {
                       width: MediaQuery.of(context).size.width * 0.05,
                     ),
                     CustomWidget(
-                      color: _femaleSelected ? _activeColor : _inactiveColor,
+                      color: _gender == Gender.Female
+                          ? _activeColor
+                          : _inactiveColor,
                       widget: GenderWidget(
                         onTap: () {
                           setState(() {
                             // _femaleSelected = true;
-                            _femaleSelected = !_femaleSelected;
-                            _maleSelected = false;
-                            log('_femaleSelected==> $_femaleSelected');
+                            // _femaleSelected = !_femaleSelected;
+                            // _maleSelected = false;
+                            _gender = Gender.Female;
+                            // log('_femaleSelected==> $_femaleSelected');
                           });
                         },
                         icons: FontAwesomeIcons.venus,
@@ -86,13 +97,13 @@ class _ResultPageState extends State<ResultPage> {
               CustomWidget(
                 color: Color(0xff111327),
                 widget: HeightWidget(
-                  currentValue: _currentValue,
+                  currentValue: _height.toInt(),
                   // aty bar funksiya
                   // onChangedSlider: atyBarFunksiya,
                   // aty jok funksiya
                   onChangedSlider: (double koldonuuchuOzgorttu) {
                     setState(() {
-                      _currentValue = koldonuuchuOzgorttu.toInt();
+                      _height = koldonuuchuOzgorttu.toInt();
                     });
                   },
                 ),
@@ -107,7 +118,7 @@ class _ResultPageState extends State<ResultPage> {
                     CustomWidget(
                       widget: CircleButton(
                         text: 'Weight',
-                        numberText: _weight.toString(),
+                        numberText: _weight.toInt().toString(),
                         remove: FontAwesomeIcons.minus,
                         add: FontAwesomeIcons.plus,
                         decrement: () {
@@ -152,14 +163,16 @@ class _ResultPageState extends State<ResultPage> {
           ),
         ),
         bottomNavigationBar: CustomBottomNavgation(
-          onTap: (() {
+          text: 'Эсепте',
+          onTap: () {
             Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ResultPage(),
-              ),
-            );
-          }),
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(
+                    bmiResult: bmiBrain.calculateBmi(_weight, _height),
+                  ),
+                ));
+          },
         ));
   }
 }
