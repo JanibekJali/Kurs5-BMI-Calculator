@@ -1,3 +1,5 @@
+import 'package:bmi_calculator/constants/colors/app_color.dart';
+import 'package:bmi_calculator/constants/text_styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -21,10 +23,7 @@ class CircleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          text.toUpperCase(),
-          style: TextStyle(fontSize: 25.0, color: Color(0xff5A5B6B)),
-        ),
+        Text(text.toUpperCase(), style: AppTextStyle.circle),
         Text(
           numberText,
           style: TextStyle(
@@ -39,7 +38,7 @@ class CircleButton extends StatelessWidget {
               onTap: decrement,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xff4C4F5D),
+                  color: AppColors.circle,
                   shape: BoxShape.circle,
                 ),
                 child: Padding(
@@ -55,7 +54,7 @@ class CircleButton extends StatelessWidget {
               onTap: increment,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xff4C4F5D),
+                  color: AppColors.circle,
                   shape: BoxShape.circle,
                 ),
                 child: Padding(

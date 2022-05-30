@@ -1,3 +1,6 @@
+import 'package:bmi_calculator/constants/colors/app_color.dart';
+import 'package:bmi_calculator/constants/text_styles/app_text_style.dart';
+import 'package:bmi_calculator/constants/texts/app_text.dart';
 import 'package:flutter/material.dart';
 
 class HeightWidget extends StatelessWidget {
@@ -10,7 +13,7 @@ class HeightWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Height'.toUpperCase(),
+          AppTexts.height.toUpperCase(),
           style: TextStyle(
             fontSize: 25.0,
             letterSpacing: 1.0,
@@ -22,32 +25,30 @@ class HeightWidget extends StatelessWidget {
           textBaseline: TextBaseline.alphabetic,
           children: [
             Text(
-              currentValue.toString() ?? '480',
+              currentValue.toString(),
               style: TextStyle(
                 fontSize: 50.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              'cm',
-              style: TextStyle(fontSize: 20.0),
+              AppTexts.cm,
+              style: AppTextStyle.cmText,
             ),
           ],
         ),
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
-            activeTrackColor: Colors.red,
-            inactiveTrackColor: Colors.white,
-            thumbColor: Colors.redAccent,
-            overlayColor: Colors.yellow,
-            // thumbShape: RoundRangeSliderThumbShape(enabledThumbRadius: 10.),
+            activeTrackColor: AppColors.red,
+            inactiveTrackColor: AppColors.white,
+            thumbColor: AppColors.redAccent,
+            overlayColor: AppColors.yellow,
             overlayShape: RoundSliderOverlayShape(overlayRadius: 15.0),
           ),
           child: Slider(
             value: currentValue.toDouble(),
             min: 0,
             max: 230,
-            // divisions: 10,
             onChanged: onChangedSlider,
           ),
         ),

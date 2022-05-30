@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomWidget extends StatelessWidget {
   CustomWidget({this.widget, this.color});
-  // final IconData icons;
-  // final String text;
+
   final Widget widget;
   final Color color;
   @override

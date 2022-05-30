@@ -1,18 +1,15 @@
-import 'package:bmi_calculator/brain/bmi_brain.dart';
+import 'package:bmi_calculator/app_data/repos/app_repo.dart';
+import 'package:bmi_calculator/constants/colors/app_color.dart';
+import 'package:bmi_calculator/constants/texts/app_text.dart';
 import 'package:bmi_calculator/pages/result_page.dart';
 import 'package:bmi_calculator/widgets/height_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../app_data/enums/app_enum.dart';
 import '../widgets/circle_button.dart';
 import '../widgets/custom_bottom_navigation.dart';
 import '../widgets/custom_widget.dart';
 import '../widgets/gender_widget.dart';
-
-enum Gender {
-  Male,
-  Female,
-  None,
-}
 
 class BmiPage extends StatefulWidget {
   const BmiPage({Key key}) : super(key: key);
@@ -26,18 +23,17 @@ class _BmiPageState extends State<BmiPage> {
   int _weight = 60;
   int _age = 23;
 
-  Color _activeColor = Color.fromARGB(255, 43, 47, 82);
-  Color _inactiveColor = Color(0xff111327);
-  // bool _maleSelected = false;
-  // bool _femaleSelected = false;
+  Color _activeColor = AppColors.active;
+  Color _inactiveColor = AppColors.inActive;
+
   Gender _gender = Gender.None;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('BMI Calculator'),
-          backgroundColor: Color(0xff111327),
+          title: Text(AppTexts.bmiCalculator),
+          backgroundColor: AppColors.appBar,
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -49,19 +45,14 @@ class _BmiPageState extends State<BmiPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomWidget(
-                      // icons: FontAwesomeIcons.mars,
-                      // text: 'Male',
                       color: _gender == Gender.Male
                           ? _activeColor
                           : _inactiveColor,
                       widget: GenderWidget(
                         icons: FontAwesomeIcons.mars,
-                        text: 'Male',
+                        text: AppTexts.male.toUpperCase(),
                         onTap: () {
                           setState(() {
-                            // _maleSelected = true;
-                            // _maleSelected = !_maleSelected;
-                            // _femaleSelected = false;
                             _gender = Gender.Male;
                           });
                         },
@@ -77,15 +68,11 @@ class _BmiPageState extends State<BmiPage> {
                       widget: GenderWidget(
                         onTap: () {
                           setState(() {
-                            // _femaleSelected = true;
-                            // _femaleSelected = !_femaleSelected;
-                            // _maleSelected = false;
                             _gender = Gender.Female;
-                            // log('_femaleSelected==> $_femaleSelected');
                           });
                         },
                         icons: FontAwesomeIcons.venus,
-                        text: 'Female',
+                        text: AppTexts.female.toUpperCase(),
                       ),
                     ),
                   ],
@@ -95,12 +82,9 @@ class _BmiPageState extends State<BmiPage> {
                 height: 20.0,
               ),
               CustomWidget(
-                color: Color(0xff111327),
+                color: AppColors.main,
                 widget: HeightWidget(
                   currentValue: _height.toInt(),
-                  // aty bar funksiya
-                  // onChangedSlider: atyBarFunksiya,
-                  // aty jok funksiya
                   onChangedSlider: (double koldonuuchuOzgorttu) {
                     setState(() {
                       _height = koldonuuchuOzgorttu.toInt();
@@ -117,7 +101,7 @@ class _BmiPageState extends State<BmiPage> {
                   children: [
                     CustomWidget(
                       widget: CircleButton(
-                        text: 'Weight',
+                        text: AppTexts.weight.toUpperCase(),
                         numberText: _weight.toInt().toString(),
                         remove: FontAwesomeIcons.minus,
                         add: FontAwesomeIcons.plus,
@@ -132,14 +116,14 @@ class _BmiPageState extends State<BmiPage> {
                           });
                         },
                       ),
-                      color: Color(0xff111327),
+                      color: AppColors.main,
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.05,
                     ),
                     CustomWidget(
                       widget: CircleButton(
-                        text: 'Age',
+                        text: AppTexts.age,
                         numberText: _age.toString(),
                         remove: FontAwesomeIcons.minus,
                         add: FontAwesomeIcons.plus,
@@ -154,7 +138,7 @@ class _BmiPageState extends State<BmiPage> {
                           });
                         },
                       ),
-                      color: Color(0xff111327),
+                      color: AppColors.main,
                     )
                   ],
                 ),
@@ -163,23 +147,16 @@ class _BmiPageState extends State<BmiPage> {
           ),
         ),
         bottomNavigationBar: CustomBottomNavgation(
-          text: 'Эсепте',
+          text: AppTexts.calcullate,
           onTap: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ResultPage(
-                    bmiResult: bmiBrain.calculateBmi(_weight, _height),
+                    bmiResult: appRepos.calculateBmi(_weight, _height),
                   ),
                 ));
           },
         ));
   }
 }
-
-// turnary operator/if-else  === _maleSelected ? _activeColor : _inactiveColor,
-// if(_maleSelected){
-// _activeColor  
-// }else{
-// _inactiveColor
-// }

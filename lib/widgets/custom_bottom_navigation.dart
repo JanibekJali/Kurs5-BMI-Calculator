@@ -1,3 +1,5 @@
+import 'package:bmi_calculator/constants/colors/app_color.dart';
+import 'package:bmi_calculator/constants/text_styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNavgation extends StatelessWidget {
@@ -8,14 +10,14 @@ class CustomBottomNavgation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 100.0,
-      color: Color(0xffF50D56),
+      color: AppColors.redAccent,
       child: Padding(
         padding: const EdgeInsets.only(top: 30.0),
         child: InkWell(
           onTap: onTap,
           child: Text(
             text,
-            style: TextStyle(fontSize: 35.0, fontWeight: FontWeight.bold),
+            style: AppTextStyle.bottomNavigation,
             textAlign: TextAlign.center,
           ),
         ),
