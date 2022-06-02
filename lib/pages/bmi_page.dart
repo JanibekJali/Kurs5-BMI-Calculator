@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/app_data/repos/app_repo.dart';
 import 'package:bmi_calculator/constants/colors/app_color.dart';
 import 'package:bmi_calculator/constants/texts/app_text.dart';
 import 'package:bmi_calculator/controllers/bmi_page_controllers.dart';

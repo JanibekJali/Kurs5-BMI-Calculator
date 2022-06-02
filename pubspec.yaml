@@ -7,10 +7,18 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.7.1 <3.0.0"
+<<<<<<< HEAD
 dependencies:
   flutter:
     sdk: flutter
 
+=======
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+>>>>>>> 0aec932b51a85e9dbf49f148b100555ae49867a6
   cupertino_icons: ^1.0.2
   font_awesome_flutter: ^10.1.0
   get: ^4.6.5
@@ -19,11 +27,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+<<<<<<< HEAD
   
   flutter_lints: ^1.0.0
 
 
 
+=======
+  flutter_lints: ^1.0.0
+
+>>>>>>> 0aec932b51a85e9dbf49f148b100555ae49867a6
 flutter:
 
   uses-material-design: true
@@ -32,8 +45,11 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0aec932b51a85e9dbf49f148b100555ae49867a6
   # example:
   # fonts:
   #   - family: Schyler
@@ -46,4 +62,8 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+<<<<<<< HEAD
   
+=======
+  
+>>>>>>> 0aec932b51a85e9dbf49f148b100555ae49867a6
